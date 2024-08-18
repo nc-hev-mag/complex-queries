@@ -1,38 +1,38 @@
 [
 	{
-		"snack_name": "Snack A",
-		"snack_description": "Snack description A",
+		"snack_name": "snack a",
+		"snack_description": "snack description a",
 		"price_in_pence": 100,
-		"category": "Category B"
+		"category": "Category b"
 	},
 	{
-		"snack_name": "Snack B",
-		"snack_description": "Snack description B",
+		"snack_name": "snack b",
+		"snack_description": "snack description b",
 		"price_in_pence": 10,
-		"category": "Category B"
+		"category": "Category b"
 	},
 	{
-		"snack_name": "Snack D",
-		"snack_description": "Snack description D",
+		"snack_name": "snack d",
+		"snack_description": "snack description d",
 		"price_in_pence": 120,
-		"category": "Category C"
+		"category": "category c"
 	},
 	{
-		"snack_name": "Snack E",
-		"snack_description": "Snack description E",
+		"snack_name": "snack e",
+		"snack_description": "snack description e",
 		"price_in_pence": 70,
-		"category": "Category A"
+		"category": "category a"
 	},
 	{
-		"snack_name": "Snack C",
-		"snack_description": "Snack description C",
+		"snack_name": "snack c",
+		"snack_description": "snack description c",
 		"price_in_pence": 150,
-		"category": "Category A"
+		"category": "category a"
 	},
 	{
-		"snack_name": "Snack F",
-		"snack_description": "Snack description F",
+		"snack_name": "snack f",
+		"snack_description": "snack description f",
 		"price_in_pence": 200,
-		"category": "Category B"
+		"category": "category b"
 	}
 ]

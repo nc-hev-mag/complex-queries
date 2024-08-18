@@ -1,0 +1,75 @@
+[
+	{
+		"snack_name": "kit kat",
+		"snack_description": "time for a break",
+		"price_in_pence": 100,
+		"category": "chocolate"
+	},
+	{
+		"snack_name": "party rings",
+		"snack_description": "can't have a party without them",
+		"price_in_pence": 80,
+		"category": "biscuits"
+	},
+	{
+		"snack_name": "hula hoops",
+		"snack_description": "the party ring of the crisp world",
+		"price_in_pence": 65,
+		"category": "crisps"
+	},
+
+	{
+		"snack_name": "banana",
+		"snack_description": "monkeys open them upside down",
+		"price_in_pence": 65,
+		"category": "fruit"
+	},
+	{
+		"snack_name": "chocolate covered raisins",
+		"snack_description": "you can never stop at one",
+		"price_in_pence": 120,
+		"category": "chocolate"
+	},
+	{
+		"snack_name": "butter croissant",
+		"snack_description": "always appreciated",
+		"price_in_pence": 175,
+		"category": "pastries"
+	},
+	{
+		"snack_name": "wheat crunchies",
+		"snack_description": "it’s crunch time!",
+		"price_in_pence": 90,
+		"category": "crisps"
+	},
+	{
+		"snack_name": "pom bears",
+		"snack_description": "tasty little friends",
+		"price_in_pence": 85,
+		"category": "crisps"
+	},
+	{
+		"snack_name": "vegan sausage roll",
+		"snack_description": "the pinnacle of modern science",
+		"price_in_pence": 195,
+		"category": "pastries"
+	},
+	{
+		"snack_name": "space raiders",
+		"snack_description": "out of this world",
+		"price_in_pence": 100,
+		"category": "crips"
+	},
+	{
+		"snack_name": "nice biscuits",
+		"snack_description": "more like 'alright' biscuits",
+		"price_in_pence": 65,
+		"category": "biscuits"
+	},
+	{
+		"snack_name": "cheese string",
+		"snack_description": "90% pva glue",
+		"price_in_pence": 75,
+		"category": "other"
+	}
+]
