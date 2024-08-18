@@ -1,0 +1,25 @@
+{
+	"name": "pg-snacks",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"test": "PGDATABASE=nc_snacks jest",
+		"start": "nodemon",
+		"setup-db": "psql -f db/setup-db.sql",
+		"seed": "PGDATABASE=nc_snacks node db/run-seed.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.19.2",
+		"pg": "^8.12.0"
+	},
+	"devDependencies": {
+		"jest": "^29.7.0",
+		"nodemon": "^3.1.4",
+		"pg-format": "^1.0.4",
+		"supertest": "^7.0.0"
+	}
+}
