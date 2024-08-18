@@ -9,6 +9,9 @@ const seed = ({ categoriesData, snacksData, vendingMachineData }) => {
 			return db.query("DROP TABLE IF EXISTS categories");
 		})
 		.then(() => {
+			return db.query(`DROP TABLE IF EXISTS vending_machines`);
+		})
+		.then(() => {
 			return db.query(`CREATE TABLE categories(
             category_id SERIAL PRIMARY KEY,
             category_name VARCHAR(40) NOT NULL)`);
@@ -20,6 +23,13 @@ const seed = ({ categoriesData, snacksData, vendingMachineData }) => {
             snack_description VARCHAR(100),
             price_in_pence INT,
             category_id INT REFERENCES categories(category_id))`);
+		})
+		.then(() => {
+			return db.query(`CREATE TABLE vending_machines (
+				id SERIAL PRIMARY KEY,
+				location VARCHAR(100),
+				rating INT
+				);`);
 		})
 		.then(() => {
 			const formattedCategories = categoriesData.map((category) => {
@@ -43,6 +53,16 @@ const seed = ({ categoriesData, snacksData, vendingMachineData }) => {
 				formattedSnacks
 			);
 
+			return db.query(queryStr);
+		})
+		.then(() => {
+			const formattedVendingMachines = vendingMachineData.map((vendor) => {
+				return [vendor.location, vendor.rating];
+			});
+			const queryStr = format(
+				`INSERT INTO vending_machines(location, rating) VALUES %L`,
+				formattedVendingMachines
+			);
 			return db.query(queryStr);
 		});
 };

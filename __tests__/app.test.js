@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../app.js");
 const db = require("../db/connection");
 const seed = require("../db/seed.js");
-const data = require("../db/data/");
+const data = require("../db/test-data/index.js");
 
 beforeEach(() => {
 	return seed(data);
@@ -48,7 +48,7 @@ describe("GET /api/snacks/:snack_id", () => {
 			.get("/api/snacks/not-an-id")
 			.expect(400)
 			.then(({ body: { message } }) => {
-				expect(message).toBe("Invalid id type");
+				expect(message).toBe("Invalid ID type");
 			});
 	});
 	it("responds with status 404 and an error message if passed a valid snack_id that does not exist in the database", () => {
@@ -56,16 +56,13 @@ describe("GET /api/snacks/:snack_id", () => {
 			.get("/api/snacks/1000")
 			.expect(404)
 			.then(({ body: { message } }) => {
-				expect(message).toBe("Id not found");
+				expect(message).toBe("ID not found");
 			});
 	});
 });
 
 describe("POST /api/snacks", () => {
 	it("responds with status 201 and the created snack", () => {
-		const testSnack = {
-			snack_name: "",
-		};
 		return request(app)
 			.post("/api/snacks")
 			.send({
@@ -86,31 +83,31 @@ describe("POST /api/snacks", () => {
 	});
 });
 
-// describe("GET /api/venders", () => {
-// 	it("responds with status 200 and an array containing data for all vending machines", () => {
-// 		return request(app)
-// 			.get("/api/venders")
-// 			.expect(200)
-// 			.then(({ body }) => {
-// 				expect(body.vendingMachines.length).toBe(4);
-// 				body.vendingMachines.forEach((vendingMachine) => {
-// 					expect(typeof vendingMachine.id).toBe("number");
-// 					expect(typeof vendingMachine.location).toBe("string");
-// 					expect(typeof vendingMachine.rating).toBe("number");
-// 				});
-// 			});
-// 	});
-// });
+describe("GET /api/vendors", () => {
+	it("responds with status 200 and an array containing data for all vending machines", () => {
+		return request(app)
+			.get("/api/vendors")
+			.expect(200)
+			.then(({ body }) => {
+				expect(body.vendingMachines.length).toBe(4);
+				body.vendingMachines.forEach((vendingMachine) => {
+					expect(typeof vendingMachine.id).toBe("number");
+					expect(typeof vendingMachine.location).toBe("string");
+					expect(typeof vendingMachine.rating).toBe("number");
+				});
+			});
+	});
+});
 
-// describe("GET /api/venders/:venderId", () => {
-// 	it("responds with status 200 and an object containing the correct vending machine data", () => {
-// 		return request(app)
-// 			.get("/api/venders/3")
-// 			.expect(200)
-// 			.then(({ body }) => {
-// 				expect(body.vendingMachine.id).toBe(3);
-// 				expect(body.vendingMachine.location).toBe("Location C");
-// 				expect(body.vendingMachine.rating).toBe(4);
-// 			});
-// 	});
-// });
+describe("GET /api/vendors/:vendorId", () => {
+	it("responds with status 200 and an object containing the correct vending machine data", () => {
+		return request(app)
+			.get("/api/vendors/3")
+			.expect(200)
+			.then(({ body }) => {
+				expect(body.vendingMachine.id).toBe(3);
+				expect(body.vendingMachine.location).toBe("Location C");
+				expect(body.vendingMachine.rating).toBe(4);
+			});
+	});
+});

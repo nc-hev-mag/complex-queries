@@ -27,9 +27,9 @@ app.get("/api/snacks/:snack_id", getSnackBySnackId);
 
 app.post("/api/snacks", postSnack);
 
-app.get("/api/venders", getVendingMachines);
+app.get("/api/vendors", getVendingMachines);
 
-app.get("/api/venders/:venderId", getVendingMachineById);
+app.get("/api/vendors/:vendorId", getVendingMachineById);
 
 app.use(psqlErrorHandler);
 

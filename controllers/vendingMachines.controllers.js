@@ -10,8 +10,8 @@ const getVendingMachines = (request, response) => {
 };
 
 const getVendingMachineById = (request, response) => {
-	const { venderId } = request.params;
-	fetchVendingMachineById(venderId).then((vendingMachine) => {
+	const { vendorId } = request.params;
+	fetchVendingMachineById(vendorId).then((vendingMachine) => {
 		response.status(200).send({ vendingMachine });
 	});
 };

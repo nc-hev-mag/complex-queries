@@ -31,12 +31,12 @@ VALUES
     ('Vol-au-vents', 'ooh lala!', 320, 2);
 
 CREATE TABLE vending_machines (
-    vm_id SERIAL PRIMARY KEY,
-    vm_location VARCHAR(100),
-    vm_rating INT
+    id SERIAL PRIMARY KEY,
+    location VARCHAR(100),
+    rating INT
 );
 
-INSERT INTO vending_machines(vm_location, vm_rating)
+INSERT INTO vending_machines(location, rating)
 VALUES 
 ('Cobham Services floor 1', 10),
 ('The Olympiad, Chippenham', 2),
@@ -45,7 +45,7 @@ VALUES
 
 CREATE TABLE snacks_vending_machines (
     snack_id INT REFERENCES snacks(snack_id),
-    vm_id INT REFERENCES vending_machines(vm_id)
+    vm_id INT REFERENCES vending_machines(id)
 );
 
 INSERT INTO snacks_vending_machines (snack_id, vm_id)
