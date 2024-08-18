@@ -18,7 +18,6 @@ describe("GET /api/snacks", () => {
 			.get("/api/snacks")
 			.expect(200)
 			.then(({ body }) => {
-				console.log(body);
 				expect(body.snacks).toHaveLength(6);
 				body.snacks.forEach((snack) => {
 					expect(typeof snack.snack_id).toBe("number");
