@@ -3,13 +3,13 @@
 		"snack_name": "snack a",
 		"snack_description": "snack description a",
 		"price_in_pence": 100,
-		"category": "Category b"
+		"category": "category b"
 	},
 	{
 		"snack_name": "snack b",
 		"snack_description": "snack description b",
 		"price_in_pence": 10,
-		"category": "Category b"
+		"category": "category b"
 	},
 	{
 		"snack_name": "snack d",

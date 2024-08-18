@@ -18,6 +18,7 @@ describe("GET /api/snacks", () => {
 			.get("/api/snacks")
 			.expect(200)
 			.then(({ body }) => {
+				console.log(body);
 				expect(body.snacks).toHaveLength(6);
 				body.snacks.forEach((snack) => {
 					expect(typeof snack.snack_id).toBe("number");
@@ -37,8 +38,8 @@ describe("GET /api/snacks/:snack_id", () => {
 			.expect(200)
 			.then(({ body: { snack } }) => {
 				expect(snack.snack_id).toBe(5);
-				expect(snack.snack_name).toBe("Snack C");
-				expect(snack.snack_description).toBe("Snack description C");
+				expect(snack.snack_name).toBe("snack c");
+				expect(snack.snack_description).toBe("snack description c");
 				expect(snack.price_in_pence).toBe(150);
 				expect(snack.category_id).toBe(1);
 			});
@@ -66,16 +67,16 @@ describe("POST /api/snacks", () => {
 		return request(app)
 			.post("/api/snacks")
 			.send({
-				snack_name: "DairyLea Dunkers",
-				snack_description: "Finally a savoury alternative to yoghurt",
+				snack_name: "dairylea dunkers",
+				snack_description: "finally a savoury alternative to yoghurt",
 				price_in_pence: 122,
 				category_id: 4,
 			})
 			.expect(201)
 			.then(({ body: { newSnack } }) => {
-				expect(newSnack.snack_name).toBe("DairyLea Dunkers");
+				expect(newSnack.snack_name).toBe("dairylea dunkers");
 				expect(newSnack.snack_description).toBe(
-					"Finally a savoury alternative to yoghurt"
+					"finally a savoury alternative to yoghurt"
 				);
 				expect(newSnack.price_in_pence).toBe(122);
 				expect(newSnack.category_id).toBe(4);
@@ -106,7 +107,7 @@ describe("GET /api/vendors/:vendorId", () => {
 			.expect(200)
 			.then(({ body }) => {
 				expect(body.vendingMachine.id).toBe(3);
-				expect(body.vendingMachine.location).toBe("Location C");
+				expect(body.vendingMachine.location).toBe("location c");
 				expect(body.vendingMachine.rating).toBe(4);
 			});
 	});
