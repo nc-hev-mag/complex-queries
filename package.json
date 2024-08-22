@@ -5,9 +5,9 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "jest",
-		"start": "nodemon",
+		"start": "nodemon listen.js",
 		"setup-db": "psql -f db/setup-db.sql",
-		"seed": " node db/run-seed.js"
+		"seed": "node db/run-seed.js"
 	},
 	"keywords": [],
 	"author": "",

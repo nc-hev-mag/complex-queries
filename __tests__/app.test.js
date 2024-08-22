@@ -13,7 +13,7 @@ afterAll(() => {
 });
 
 describe("GET /api/snacks", () => {
-	it("responds with status 200 and an array containing data for all snacks", () => {
+	test("200: response array contains data for all snacks", () => {
 		return request(app)
 			.get("/api/snacks")
 			.expect(200)
@@ -47,16 +47,16 @@ describe("GET /api/snacks/:snack_id", () => {
 		return request(app)
 			.get("/api/snacks/not-an-id")
 			.expect(400)
-			.then(({ body: { message } }) => {
-				expect(message).toBe("Invalid ID type");
+			.then(({ body: { msg } }) => {
+				expect(msg).toBe("bad request");
 			});
 	});
 	it("responds with status 404 and an error message if passed a valid snack_id that does not exist in the database", () => {
 		return request(app)
 			.get("/api/snacks/1000")
 			.expect(404)
-			.then(({ body: { message } }) => {
-				expect(message).toBe("ID not found");
+			.then(({ body: { msg } }) => {
+				expect(msg).toBe("not found");
 			});
 	});
 });

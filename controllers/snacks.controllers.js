@@ -13,6 +13,7 @@ const getSnacks = (request, response, next) => {
 			next(err);
 		});
 };
+
 const getSnackBySnackId = (request, response, next) => {
 	const { snack_id } = request.params;
 	fetchSnackBySnackId(snack_id)
