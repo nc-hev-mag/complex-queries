@@ -1,8 +1,33 @@
 const fs = require("fs/promises");
 const db = require("../db/connection");
 
-const fetchSnacks = () => {
-	return db.query(`SELECT * FROM snacks`).then(({ rows }) => {
+const fetchSnacks = (sort_by = "snack_name", category_id) => {
+	let queryStr = "SELECT * FROM snacks";
+	const queryVals = [];
+	const validColumns = [
+		"snack_id",
+		"snack_name",
+		"snack_description",
+		"price_in_pence",
+	];
+
+	if (category_id) {
+		queryStr += ` WHERE category_id = $1`;
+		queryVals.push(category_id);
+	}
+
+	if (sort_by) {
+		if (!validColumns.includes(sort_by)) {
+			return Promise.reject({ status: 400, msg: "invalid request" });
+		} else {
+			queryStr += ` ORDER BY ${sort_by}`;
+		}
+	}
+
+	return db.query(queryStr, queryVals).then(({ rows }) => {
+		if (rows.length === 0) {
+			return Promise.reject({ status: 404, msg: "not found" });
+		}
 		return rows;
 	});
 };

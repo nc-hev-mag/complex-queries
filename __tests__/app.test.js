@@ -12,7 +12,7 @@ afterAll(() => {
 	return db.end();
 });
 
-describe("GET /api/snacks", () => {
+describe.only("GET /api/snacks", () => {
 	test("200: response array contains data for all snacks", () => {
 		return request(app)
 			.get("/api/snacks")
@@ -26,6 +26,60 @@ describe("GET /api/snacks", () => {
 					expect(typeof snack["price_in_pence"]).toBe("number");
 					expect(typeof snack.category_id).toBe("number");
 				});
+			});
+	});
+	test("200: accept a sort_by query, and order the response by the given column name in ascending order", () => {
+		return request(app)
+			.get("/api/snacks?sort_by=price_in_pence")
+			.expect(200)
+			.then(({ body }) => {
+				expect(body.snacks).toBeSortedBy("price_in_pence", {
+					descending: false,
+				});
+			});
+	});
+	test("400: reject if sort_by value is not valid/accepted", () => {
+		return request(app)
+			.get("/api/snacks?sort_by=muahahahaaha")
+			.expect(400)
+			.then(({ body }) => {
+				expect(body.msg).toBe("invalid request");
+			});
+	});
+	test("200: accept category_id query to filter the response by category", () => {
+		return request(app)
+			.get("/api/snacks?category_id=1")
+			.expect(200)
+			.then(({ body }) => {
+				expect(body.snacks.length).toBe(2);
+				body.snacks.forEach((snack) => {
+					expect(snack.category_id).toBe(1);
+				});
+			});
+	});
+	test("200: can chain sort_by and categroy_id queries", () => {
+		return request(app)
+			.get("/api/snacks?sort_by=price_in_pence&category_id=2")
+			.expect(200)
+			.then(({ body }) => {
+				expect(body.snacks).toBeSortedBy("price_in_pence");
+				expect(body.snacks.length).toBe(3);
+			});
+	});
+	test("400: reject if category_id is wrong type", () => {
+		return request(app)
+			.get("/api/snacks?category_id=banana")
+			.expect(400)
+			.then(({ body }) => {
+				expect(body.msg).toBe("bad request");
+			});
+	});
+	test("404: category_id not found but valid syntax", () => {
+		return request(app)
+			.get("/api/snacks?category_id=999")
+			.expect(404)
+			.then(({ body }) => {
+				expect(body.msg).toBe("not found");
 			});
 	});
 });

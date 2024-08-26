@@ -5,7 +5,8 @@ const {
 } = require("../models/snacks.models");
 
 const getSnacks = (request, response, next) => {
-	fetchSnacks()
+	const { sort_by, category_id } = request.query;
+	fetchSnacks(sort_by, category_id)
 		.then((snacks) => {
 			response.status(200).send({ snacks });
 		})
