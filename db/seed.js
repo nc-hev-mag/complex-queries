@@ -1,6 +1,6 @@
 const db = require("./connection.js");
 const format = require("pg-format");
-const { createRef, formatSnacksData } = require("../utils/index.js");
+const { createRef, formatSnacksData } = require("../utils/utils.js");
 
 const seed = ({ categoriesData, snacksData, vendingMachineData }) => {
 	return db

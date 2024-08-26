@@ -1,4 +1,4 @@
-const { createRef } = require("../utils/index");
+const { createRef } = require("../utils/utils");
 
 describe("createRef", () => {
 	it("returns an empty object when passed and empty array", () => {
