@@ -1,5 +1,5 @@
-const fs = require("fs/promises");
 const db = require("../db/connection");
+const { checkExists } = require("../utils/utils");
 
 const fetchSnacks = (sort_by = "snack_name", category_id) => {
 	let queryStr = "SELECT * FROM snacks";
@@ -10,10 +10,12 @@ const fetchSnacks = (sort_by = "snack_name", category_id) => {
 		"snack_description",
 		"price_in_pence",
 	];
+	const queryProms = [];
 
 	if (category_id) {
 		queryStr += ` WHERE category_id = $1`;
 		queryVals.push(category_id);
+		queryProms[1] = checkExists("categories", "category_id", category_id);
 	}
 
 	if (sort_by) {
@@ -23,12 +25,10 @@ const fetchSnacks = (sort_by = "snack_name", category_id) => {
 			queryStr += ` ORDER BY ${sort_by}`;
 		}
 	}
-
-	return db.query(queryStr, queryVals).then(({ rows }) => {
-		if (rows.length === 0) {
-			return Promise.reject({ status: 404, msg: "not found" });
-		}
-		return rows;
+	queryProms[0] = db.query(queryStr, queryVals);
+	console.log(queryProms);
+	return Promise.all(queryProms).then((promResults) => {
+		return promResults[0].rows;
 	});
 };
 

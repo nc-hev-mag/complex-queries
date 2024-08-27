@@ -1,0 +1,57 @@
+{
+	"GET /api": {
+		"description": "serves up a json representation of all the available endpoints of the api"
+	},
+	"GET /api/snacks": {
+		"description": "serves an array of all snacks",
+		"queries": ["category", "sort_by"],
+		"exampleResponse": {
+			"snacks": [
+				{
+					"snack_name": "kit kat",
+					"snack_description": "time for a break",
+					"price_in_pence": 100,
+					"category": "chocolate"
+				},
+				{
+					"snack_name": "party rings",
+					"snack_description": "can't have a party without them",
+					"price_in_pence": 80,
+					"category": "biscuits"
+				},
+				{
+					"snack_name": "hula hoops",
+					"snack_description": "the party ring of the crisp world",
+					"price_in_pence": 65,
+					"category": "crisps"
+				},
+				{
+					"snack_name": "banana",
+					"snack_description": "monkeys open them upside down",
+					"price_in_pence": 65,
+					"category": "fruit"
+				}
+			]
+		}
+	},
+	"GET /api/vendors": {
+		"description": "serves an array of all vending machines",
+		"queries": ["location"],
+		"exampleResponse": {
+			"vendors": [
+				{ "vm_id": "1", "location": "cobham services (floor 1)", "rating": 10 },
+				{
+					"vm_id": "2",
+					"location": "the olympiad, chippenham (basement)",
+					"rating": 7
+				},
+				{
+					"vm_id": "3",
+					"location": "the olympiad, chippenham (mezzanine)",
+					"rating": 1
+				},
+				{ "vm_id": "4", "location": "manchester arndale", "rating": 4 }
+			]
+		}
+	}
+}

@@ -57,7 +57,7 @@ describe.only("GET /api/snacks", () => {
 				});
 			});
 	});
-	test("200: can chain sort_by and categroy_id queries", () => {
+	test("200: can chain sort_by and category_id queries", () => {
 		return request(app)
 			.get("/api/snacks?sort_by=price_in_pence&category_id=2")
 			.expect(200)
@@ -80,6 +80,15 @@ describe.only("GET /api/snacks", () => {
 			.expect(404)
 			.then(({ body }) => {
 				expect(body.msg).toBe("not found");
+			});
+	});
+	test("200: category_id exists but has no related snacks, responds with empty array", () => {
+		return request(app)
+			.get("/api/snacks?category_id=4")
+			.expect(200)
+			.then(({ body }) => {
+				expect(body.snacks.length).toBe(0);
+				expect(Array.isArray(body.snacks)).toBe(true);
 			});
 	});
 });
