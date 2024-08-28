@@ -14,11 +14,11 @@ const {
 	customErrorHandler,
 	serverErrorHandler,
 } = require("./errors");
-
+const endpoints = require("./endpoints.json");
 app.use(express.json());
 
 app.get("/api", (request, response) => {
-	response.status(200).send({ message: "Hello world!" });
+	response.status(200).send({ endpoints });
 });
 
 app.get("/api/snacks", getSnacks);
