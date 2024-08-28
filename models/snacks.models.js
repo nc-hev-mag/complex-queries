@@ -30,7 +30,7 @@ const fetchSnacks = (sort_by = "snack_name", category_id) => {
 		if (queryProms.length === 1) {
 			return promResults[0].rows;
 		} else {
-			return promResult[1].rows;
+			return promResults[1].rows;
 		}
 	});
 };
