@@ -15,7 +15,7 @@ const fetchSnacks = (sort_by = "snack_name", category_id) => {
 	if (category_id) {
 		queryStr += ` WHERE category_id = $1`;
 		queryVals.push(category_id);
-		queryProms[1] = checkExists("categories", "category_id", category_id);
+		queryProms.push(checkExists("categories", "category_id", category_id));
 	}
 
 	if (sort_by) {
@@ -25,9 +25,13 @@ const fetchSnacks = (sort_by = "snack_name", category_id) => {
 			queryStr += ` ORDER BY ${sort_by}`;
 		}
 	}
-	queryProms[0] = db.query(queryStr, queryVals);
+	queryProms.push(db.query(queryStr, queryVals));
 	return Promise.all(queryProms).then((promResults) => {
-		return promResults[0].rows;
+		if (queryProms.length === 1) {
+			return promResults[0].rows;
+		} else {
+			return promResult[1].rows;
+		}
 	});
 };
 
