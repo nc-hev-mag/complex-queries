@@ -26,7 +26,6 @@ const fetchSnacks = (sort_by = "snack_name", category_id) => {
 		}
 	}
 	queryProms[0] = db.query(queryStr, queryVals);
-	console.log(queryProms);
 	return Promise.all(queryProms).then((promResults) => {
 		return promResults[0].rows;
 	});

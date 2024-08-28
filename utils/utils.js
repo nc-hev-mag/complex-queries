@@ -7,7 +7,6 @@ const checkExists = (table_name, column_name, value) => {
 		table_name,
 		column_name
 	);
-	console.log(queryStr, "queryStr");
 	return db.query(queryStr, [value]).then(({ rows }) => {
 		if (rows.length === 0) {
 			return Promise.reject({ status: 404, msg: "not found" });

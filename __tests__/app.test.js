@@ -12,7 +12,7 @@ afterAll(() => {
 	return db.end();
 });
 
-describe.only("GET /api/snacks", () => {
+describe("GET /api/snacks", () => {
 	test("200: response array contains data for all snacks", () => {
 		return request(app)
 			.get("/api/snacks")
