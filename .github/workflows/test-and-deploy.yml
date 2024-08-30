@@ -30,3 +30,8 @@ jobs:
         run: npm ci
       - name: Run tests
         run: PGDATABASE=my_db PGUSER=test_user PGPASSWORD=test_pw npm t
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to render
+        run: curl ${{secrets.DEPLOY_HOOK_URL}}
