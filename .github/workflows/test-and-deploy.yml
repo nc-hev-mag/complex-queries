@@ -1,0 +1,12 @@
+name: Test and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: sayhello
+        run: echo "helloworld :)"
